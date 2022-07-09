@@ -19,6 +19,8 @@ public class Map : MonoBehaviour
     public List<string> mapListL2;
     public GameObject gameKeeper;
     public GameObject playerSpawnCell, opponentSpawnCell; //declare
+    public string debugString;
+    public string SelectedBuildingRemove;
 
 
 
@@ -82,10 +84,10 @@ public class Map : MonoBehaviour
             Debug.Log("Released left alt, bounds variables set to false and null");
             if (boundsSelected1 && boundsSelected2)
             {
-                 float boundsObjX1 = boundsObj1.transform.position.x;
-                 float boundsObjY1 = boundsObj1.transform.position.z;
-                 float boundsObjX2 = boundsObj2.transform.position.x;
-                 float boundsObjY2 = boundsObj2.transform.position.z;
+                float boundsObjX1 = boundsObj1.transform.position.x;
+                float boundsObjY1 = boundsObj1.transform.position.z;
+                float boundsObjX2 = boundsObj2.transform.position.x;
+                float boundsObjY2 = boundsObj2.transform.position.z;
                 int count = 0;
                 if (boundsObjX1 < boundsObjX2)
                 {
@@ -95,13 +97,13 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObjX1; x <= boundsObjX2; x += 3f)//left to right Obj1 to Obj2 X 
                             {
-                               
+
                                 int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[i].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                                 count++;
                             }
-                          
+
                         }
                     }
                     else if (boundsObjY1 > boundsObjY2)
@@ -114,9 +116,9 @@ public class Map : MonoBehaviour
                                 Component halo = mapListL1[i].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                                 count++;
-                               
+
                             }
-                            
+
                         }
                     }
                     else if (boundsObjY1 == boundsObjY2)
@@ -124,7 +126,7 @@ public class Map : MonoBehaviour
                         float y = boundsObjY1;
                         for (float x = boundsObjX1; x <= boundsObjX2; x += 3f)//left to right Obj1 to Obj2 X
                         {
-                           
+
                             int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[i].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
@@ -141,13 +143,13 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObjX1; x >= boundsObjX2; x -= 3f)//left to right Obj1 to Obj2 X
                             {
-                               
+
                                 int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[i].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                                 count++;
                             }
-                           
+
                         }
                     }
                     else if (boundsObjY1 > boundsObjY2)
@@ -156,13 +158,13 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObjX1; x >= boundsObjX2; x -= 3f)//left to right Obj1 to Obj2 X
                             {
-                             
+
                                 int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[i].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                                 count++;
                             }
-                          
+
                         }
                     }
                     else if (boundsObjY1 == boundsObjY2)
@@ -170,7 +172,7 @@ public class Map : MonoBehaviour
                         float y = boundsObjY1;
                         for (float x = boundsObjX1; x >= boundsObjX2; x -= 3f)//left to right Obj1 to Obj2 X
                         {
-                          
+
                             int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[i].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
@@ -184,7 +186,7 @@ public class Map : MonoBehaviour
                     {
                         for (float y = boundsObjY1; y <= boundsObjY2; y += 3f)//bottom to top Obj1 to Obj2 Y
                         {
-                           
+
                             float x = boundsObjX1;
                             int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[i].GetComponent("Halo");
@@ -197,7 +199,7 @@ public class Map : MonoBehaviour
                         float x = boundsObjX1;
                         for (float y = boundsObjY1; y >= boundsObjY2; y -= 3f)//bottom to top Obj1 to Obj2 Y
                         {
-                           
+
                             int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[i].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
@@ -206,14 +208,14 @@ public class Map : MonoBehaviour
                     }
                     else if (boundsObjY1 == boundsObjY2)
                     {
-                        
-                            float y = boundsObjY1;
-                            float x = boundsObjX1;
-                            int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
-                            Component halo = mapListL1[i].GetComponent("Halo");
-                            halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
-                            count++;
-                        
+
+                        float y = boundsObjY1;
+                        float x = boundsObjX1;
+                        int i = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
+                        Component halo = mapListL1[i].GetComponent("Halo");
+                        halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+                        count++;
+
                     }
                 }
                 Debug.Log("disabled " + count + " halos");
@@ -224,7 +226,7 @@ public class Map : MonoBehaviour
             boundsSelected2 = false;
             selectBoxBoundsText1.SetActive(false);
             selectBoxBoundsText2.SetActive(false);
-           
+
         }
         if (Input.GetMouseButton(0) && Input.GetButton("left shift"))
         {
@@ -242,6 +244,7 @@ public class Map : MonoBehaviour
                     else
                     {
                         Debug.Log("left click & left shift detected - building at mouse raycast");
+                        SelectedBuildingRemoveTracker(hit.collider.gameObject.name);
                         EditMap(NodeSelector(), selectedObj.transform.position.x, selectedObj.transform.position.z);
                     }
                 }
@@ -305,9 +308,9 @@ public class Map : MonoBehaviour
     }
     public void NodeHandlerOnClick(GameObject node)
     {
-        Debug.Log(node.transform.position.x);
-        Debug.Log(node.transform.position.z);
-        if (!Input.GetButton("left alt") && !Input.GetButton("left shift")) //if single click build
+        debugString = string.Format("NodeHanderOnClick - pos {0},{1} recieved", node.transform.position.x, node.transform.position.z);
+        Debug.Log(debugString);
+        if (!Input.GetButton("left alt") && !Input.GetButton("left shift")) //if single click build/remove
         {
             if (!cityCentreSelected && !houseSelected && !librarySelected && !factorySelected && !roadSelected && !blockadeSelected && !roadSelected && !towerAASelected && !towerMSelected && !grasslandSelected && !farmSelected && !forestSelected)
             {
@@ -315,7 +318,10 @@ public class Map : MonoBehaviour
             }
             else
             {
-                Debug.Log("IF SHIFT CLICK - DO NOT DO THIS");
+                Debug.Log("SINGLE BUILD/REMOVE");
+                Debug.Log("NODEHANDLERONCLICK - SELECTED BUILDING TO REMOVE: ");
+                Debug.Log(node.name);
+                SelectedBuildingRemoveTracker(node.name);
                 EditMap(NodeSelector(), node.transform.position.x, node.transform.position.z);
             }
         }
@@ -353,12 +359,12 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObj1X; x <= boundsObj2X; x += 3f)//left to right Obj1 to Obj2 X
                             {
-                                
+
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
                             }
-                            
+
                         }
                     }
                     else if (boundsObjY1 > boundsObj2Y)
@@ -367,13 +373,13 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObj1X; x <= boundsObj2X; x += 3f)//left to right Obj1 to Obj2 X
                             {
-                                
+
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
 
                             }
-                            
+
                         }
                     }
                     else if (boundsObjY1 == boundsObj2Y)
@@ -381,7 +387,7 @@ public class Map : MonoBehaviour
                         float y = boundsObjY1;
                         for (float x = boundsObj1X; x <= boundsObj2X; x += 3f)//left to right Obj1 to Obj2 X
                         {
-                            
+
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
@@ -397,12 +403,12 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObj1X; x >= boundsObj2X; x -= 3f)//left to right Obj1 to Obj2 X
                             {
-                                
+
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
                             }
-                            
+
                         }
                     }
                     else if (boundsObjY1 > boundsObj2Y)
@@ -411,12 +417,12 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObj1X; x >= boundsObj2X; x -= 3f)//left to right Obj1 to Obj2 X
                             {
-                                
+
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
                             }
-                            
+
                         }
                     }
                     else if (boundsObjY1 == boundsObj2Y)
@@ -424,12 +430,12 @@ public class Map : MonoBehaviour
                         float y = boundsObjY1;
                         for (float x = boundsObj1X; x >= boundsObj2X; x -= 3f)//left to right Obj1 to Obj2 X
                         {
-                            
+
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
                         }
-                       
+
                     }
                 }
                 else if (boundsObj1X == boundsObj2X)
@@ -439,11 +445,11 @@ public class Map : MonoBehaviour
                         float x = boundsObj1X;
                         for (float y = boundsObjY1; y <= boundsObj2Y; y += 3f)//bottom to top Obj1 to Obj2 Y
                         {
-                            
+
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
-                           
+
                         }
                     }
                     else if (boundsObjY1 > boundsObj2Y)
@@ -451,7 +457,7 @@ public class Map : MonoBehaviour
                         float x = boundsObj1X;
                         for (float y = boundsObjY1; y >= boundsObj2Y; y -= 3f)//bottom to top Obj1 to Obj2 Y
                         {
-                            
+
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
@@ -462,10 +468,10 @@ public class Map : MonoBehaviour
                         float y = boundsObjY1;
                         float x = boundsObj1X;
 
-                            int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
-                            Component halo = mapListL1[index].GetComponent("Halo");
-                            halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
-                      
+                        int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
+                        Component halo = mapListL1[index].GetComponent("Halo");
+                        halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
+
                     }
                 }
             }
@@ -479,7 +485,7 @@ public class Map : MonoBehaviour
                 GameObject tempObj1, tempObj2;
 
 
-                if (boundsObj1X < boundsObj2X)
+                if (boundsObj1X < boundsObj2X) //EDIT THIS!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                 {
                     if (boundsObjY1 < boundsObj2Y)
                     {
@@ -489,7 +495,14 @@ public class Map : MonoBehaviour
                             {
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                                else { EditMap(NodeSelector(), x, y); } //if remove selected
+                                else
+                                {
+                                    string SBRT = mapListL1[index].name;
+                                    Debug.Log(SBRT);
+                                    Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                    SelectedBuildingRemoveTracker(SBRT);
+                                    EditMap(NodeSelector(), x, y);
+                                } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                             }
@@ -501,9 +514,16 @@ public class Map : MonoBehaviour
                         {
                             for (float x = boundsObj1X; x <= boundsObj2X; x += 3f)//left to right Obj1 to Obj2 X
                             {
-                                int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
+                                int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;//ss
                                 if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                                else { EditMap(NodeSelector(), x, y); } //if remove selected
+                                else
+                                {
+                                    string SBRT = mapListL1[index].name;
+                                    Debug.Log(SBRT);
+                                    Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                    SelectedBuildingRemoveTracker(SBRT);
+                                    EditMap(NodeSelector(), x, y);
+                                } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                             }
@@ -516,7 +536,14 @@ public class Map : MonoBehaviour
                         {
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                            else { EditMap(NodeSelector(), x, y); } //if remove selected
+                            else
+                            {
+                                string SBRT = mapListL1[index].name;
+                                Debug.Log(SBRT);
+                                Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                SelectedBuildingRemoveTracker(SBRT);
+                                EditMap(NodeSelector(), x, y);
+                            } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                         }
@@ -533,7 +560,14 @@ public class Map : MonoBehaviour
                             {
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                                else { EditMap(NodeSelector(), x, y); } //if remove selected
+                                else
+                                {
+                                    string SBRT = mapListL1[index].name;
+                                    Debug.Log(SBRT);
+                                    Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                    SelectedBuildingRemoveTracker(SBRT);
+                                    EditMap(NodeSelector(), x, y);
+                                } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                             }
@@ -547,7 +581,14 @@ public class Map : MonoBehaviour
                             {
                                 int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                                 if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                                else { EditMap(NodeSelector(), x, y); } //if remove selected
+                                else
+                                {
+                                    string SBRT = mapListL1[index].name;
+                                    Debug.Log(SBRT);
+                                    Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                    SelectedBuildingRemoveTracker(SBRT);
+                                    EditMap(NodeSelector(), x, y);
+                                } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                 Component halo = mapListL1[index].GetComponent("Halo");
                                 halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                             }
@@ -560,7 +601,14 @@ public class Map : MonoBehaviour
                         {
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                            else { EditMap(NodeSelector(), x, y); } //if remove selected
+                            else
+                            {
+                                string SBRT = mapListL1[index].name;
+                                Debug.Log(SBRT);
+                                Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                SelectedBuildingRemoveTracker(SBRT);
+                                EditMap(NodeSelector(), x, y);
+                            } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                         }
@@ -575,7 +623,14 @@ public class Map : MonoBehaviour
                             float x = boundsObj1X;
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                            else { EditMap(NodeSelector(), x, y); } //if remove selected
+                            else
+                            {
+                                string SBRT = mapListL1[index].name;
+                                Debug.Log(SBRT);
+                                Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                SelectedBuildingRemoveTracker(SBRT);
+                                EditMap(NodeSelector(), x, y);
+                            } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                         }
@@ -587,7 +642,14 @@ public class Map : MonoBehaviour
                         {
                             int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                             if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                            else { EditMap(NodeSelector(), x, y); } //if remove selected
+                            else
+                            {
+                                string SBRT = mapListL1[index].name;
+                                Debug.Log(SBRT);
+                                Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                                SelectedBuildingRemoveTracker(SBRT);
+                                EditMap(NodeSelector(), x, y);
+                            } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             Component halo = mapListL1[index].GetComponent("Halo");
                             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                         }
@@ -598,8 +660,15 @@ public class Map : MonoBehaviour
                         float x = boundsObj1X;
                         int index = 60 * ((int)-y / 3) + ((int)x / 3) - 61;
                         if (!grasslandSelected) { if (mapListL1[index].name.Contains("Grassland")) { EditMap(NodeSelector(), x, y); } } //if build selected
-                        else { EditMap(NodeSelector(), x, y); } //if remove selected
-                       
+                        else
+                        {
+                            string SBRT = mapListL1[index].name;
+                            Debug.Log(SBRT);
+                            Debug.Log("Length of maplistl1[i].name minus 7 (to rid '(Clone)'");
+                            SelectedBuildingRemoveTracker(SBRT);
+                            EditMap(NodeSelector(), x, y);
+                        } //if remove selected //////////////HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
                         Component halo = mapListL1[index].GetComponent("Halo");
                         halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
                     }
@@ -677,7 +746,7 @@ public class Map : MonoBehaviour
     public void EditMap(GameObject replacement, float x, float y)
     {
         Debug.Log("SAVELOADREPEATCHECKER - ");
-        Debug.Log(PriceChecker(replacement.name) + " " + scoreObj.GetComponent<Score>().isLoad + " " + ScoreState.isLoad + " " + scoreObj.GetComponent<Score>().isLoadingBoolForMapGen);
+        Debug.Log(PriceChecker(replacement.name) + " " + scoreObj.GetComponent<Score>().isLoad + " " + ScoreState.IsLoad + " " + scoreObj.GetComponent<Score>().isLoadingBoolForMapGen);
         //edit mapListL1 & mapListL2
         Debug.Log(x + " " + y);
         int listX = (int)x / 3;
@@ -704,11 +773,11 @@ public class Map : MonoBehaviour
                     Destroy(mapListL1[index]); //destroy gameobject at index of mapListL1
                     mapListL1.RemoveAt(index); //remove gameobject from list
                     mapListL1.Insert(index, Instantiate(obj, position = new Vector3(x, 0, y), Quaternion.identity)); //instantiate obj and insert instantiated obj into list
-                                           // SaveAndLoad.IsReadyPlay == false                                                                          //edit L2 list
+                                                                                                                     // SaveAndLoad.IsReadyPlay == false                                                                          //edit L2 list
                     weight = 2;//traversable building - dijkstras related variable
                     if (SaveAndLoad.IsReadyPlay == false) { mapListL2.RemoveAt(index); mapListL2.Insert(index, CellState.MapListL2[index]); }
                     else { mapListL2.RemoveAt(index); mapListL2.Insert(index, string.Format("{0},1-0,2-0,3-0,4-0,5-0", weight)); }
-
+                    scoreObj.GetComponent<Score>().RemoveUpdate(SelectedBuildingRemove);
                     break;
                 case "City Centre":
 
@@ -817,7 +886,7 @@ public class Map : MonoBehaviour
         }
         if (PriceChecker(obj.name) == false && SaveAndLoad.IsReadyPlay == false)
         {
-      
+
             //build regardless, loading map
             //do nothing
         }
@@ -912,7 +981,7 @@ public class Map : MonoBehaviour
         Debug.Log(ScoreState.Score);
         SaveAndLoad.IsReadyDrawMap = false;//unnecessary?
         SaveAndLoad.IsReadyPlay = true; // FINISH LOAD MAP - CAN BEGIN EDITING BUILDING VARIABLES
-       
+
     }
 
     /// <summary>//ss
@@ -1032,6 +1101,10 @@ public class Map : MonoBehaviour
     public void SelectGrassland()
     {
         houseSelected = false; librarySelected = false; factorySelected = false; wonderSelected = false; cityCentreSelected = false; roadSelected = false; blockadeSelected = false; farmSelected = false; grasslandSelected = true; forestSelected = false; towerAASelected = false; towerMSelected = false;
+    }
+    public void SelectedBuildingRemoveTracker(string buildingName)
+    {
+        SelectedBuildingRemove = buildingName;
     }
 
 }

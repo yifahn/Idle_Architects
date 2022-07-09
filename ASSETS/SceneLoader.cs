@@ -44,7 +44,7 @@ public class SceneLoader : MonoBehaviour
         SaveAndLoad.IsReadyDrawMap = false;
         SaveAndLoad.IsReadyPlay = false;
         SaveAndLoad.IsReady = false;
-        ScoreState.isLoad = false;
+         // ScoreState.isLoad = false;
 
 
         SaveAndLoad.SaveGame();
@@ -55,7 +55,7 @@ public class SceneLoader : MonoBehaviour
         SaveAndLoad.IsReadyDrawMap = false;
         SaveAndLoad.IsReadyPlay = false;
         SaveAndLoad.IsReady = false;
-        ScoreState.IsLoad = false;
+       // ScoreState.IsLoad = false; EDIT1
         plane.GetComponent<Map>().mapListL1.Clear();
         CellState.MapListL1Allocate();
         CellState.MapListL1Allocate();

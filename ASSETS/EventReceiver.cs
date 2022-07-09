@@ -29,6 +29,7 @@ public class EventReceiver : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("DEBUG - Click");
+        obj.GetComponent<Map>().SelectedBuildingRemoveTracker(this.gameObject.name);
         obj.GetComponent<Map>().NodeHandlerOnClick(this.gameObject);
     }
 

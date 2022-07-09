@@ -46,6 +46,9 @@ public static class SaveAndLoad
         int y = 1;
         Debug.Log("SaveGame called");
         Debug.Log(SaveFileSelected);
+        string debugString = string.Format(" ScoreState.IsLoad = {0} & File.Exists(SaveFileSelected) = {1}", ScoreState.IsLoad, File.Exists(SaveFileSelected));
+        Debug.Log(debugString);
+
         if (File.Exists(SaveFileSelected) || ScoreState.IsLoad == false)
         {
             if (ScoreState.IsLoad == true)
@@ -112,7 +115,7 @@ public static class SaveAndLoad
                     sr.WriteLine(".6");
                     sr.Close();
                 }
-                ScoreState.IsLoad = false;
+                //ScoreState.IsLoad = false; 
             }
             else
             {
@@ -243,6 +246,7 @@ public static class SaveAndLoad
                 }
                 else if (files.Length == 0)
                 {
+                    Debug.Log("SAVING A NEW SAVE FILE #1");
                     newSaveFileName = "saveTestFile1.txt";
                     SaveAndLoad.SaveFileSelected = newSaveFileName;
                     using (StreamWriter sr = File.CreateText((SaveFileDir + newSaveFileName).Trim()))
@@ -311,12 +315,14 @@ public static class SaveAndLoad
 
                 Debug.Log("new save file @ " + newSaveFileName);
                 Debug.Log(CellState.MapListL1.Count);
+                
             }
         }
         else
         {
             Debug.Log("FAIL CANNOT FIND SAVE FILE");
         }
+        ScoreState.IsLoad = false; //added this so once game is saved - always reverts back to false as it is no longer a "loaded game" - back to main menu
     }
     public static void LoadGame()
     {
