@@ -326,6 +326,7 @@ public static class SaveAndLoad
     }
     public static void LoadGame()
     {
+        string debugString = "0";
         Debug.Log("Loading Game in SaveAndLoad.cs");
         IsReady = false;//REMOVE?
         IsReadyPlay = false;//REMOVE?
@@ -338,7 +339,7 @@ public static class SaveAndLoad
             string input;
             while ((line = sr.ReadLine()) != ".1")
             {
-                Debug.Log(line); 
+               // Debug.Log(line); 
                 sb.AppendLine(line);
             }
             input = sb.ToString();
@@ -370,34 +371,34 @@ public static class SaveAndLoad
                     sb.AppendLine(line);
                 }
             }
-            Debug.Log(sb.ToString());
+           // Debug.Log(sb.ToString());
             string[] splitInput = new string[tempInt];
             input = sb.ToString();
-            Debug.Log(input);
+           // Debug.Log(input);
             splitInput = input.Split('~');
             int i = 0;
-            Debug.Log(tempInt);
-            Debug.Log(splitInput.Length);
+           // Debug.Log(tempInt);
+           // Debug.Log(splitInput.Length);
             for (int z = 0; z < splitInput.Length; z++)
             {
-                if (z == 1977)
+               /* if (z == 1977)
                 { Debug.Log(splitInput[z]); }
                 if (z == 1978)
                 { Debug.Log(splitInput[z]); }
                 if (z == 1979)
                 { Debug.Log(splitInput[z]); }
                 if (z == 1980)
-                { Debug.Log(splitInput[z]); }
+                { Debug.Log(splitInput[z]); }*/
                 string cellName = splitInput[z];
                 CellState.mapListL1.Add(cellName.Trim());
             }
-            Debug.Log(CellState.MapListL1[1978]);
+           /* Debug.Log(CellState.MapListL1[1978]);
             Debug.Log(CellState.MapListL1[1979]);
             Debug.Log(CellState.MapListL1[1980]);
-            Debug.Log(CellState.MapListL1.Count);
+            Debug.Log(CellState.MapListL1.Count);*/
             CellState.MapListL1.RemoveAt(1980);
-            Debug.Log(CellState.MapListL1.Count);
-            Debug.Log(CellState.MapListL1.Count);
+           /* Debug.Log(CellState.MapListL1.Count);
+            Debug.Log(CellState.MapListL1.Count);*/
             i = 0;
             sr.Close();
         }
@@ -546,30 +547,32 @@ public static class SaveAndLoad
             if (cleanedTempString3 == "True")
             {
                 CellState.PlayerSpawnBool = true;
-                Debug.Log(cleanedTempString3);
+               // Debug.Log(cleanedTempString3);
             }
             else
             {
                 CellState.PlayerSpawnBool = false;
-                Debug.Log(cleanedTempString3);
+               // Debug.Log(cleanedTempString3);
             }
             string cleanedTempString4 = setVar2.Replace("\n", "").Replace("\r", "");
             if (cleanedTempString4 == "True")
             {
                 CellState.OpponentSpawnBool = true;
-                Debug.Log(cleanedTempString4);
+                //Debug.Log(cleanedTempString4);
             }
             else
             {
                 CellState.OpponentSpawnBool = false;//ss
-                Debug.Log(cleanedTempString4);
+                //Debug.Log(cleanedTempString4);//ss
             }
             string cleanedTempString1 = setVar3.Replace("\n", "").Replace("\r", "");
             CellState.PlayerSpawn = cleanedTempString1;
-            Debug.Log(CellState.PlayerSpawn);
+            debugString = string.Format("CellState.PlayerSpawn == {0}", CellState.PlayerSpawn);
+            Debug.Log(debugString);
             string cleanedTempString2 = setVar4.Replace("\n", "").Replace("\r", "");
+            debugString = string.Format("CellState.OpponentSpawn == {0}", CellState.OpponentSpawn);
             CellState.OpponentSpawn = cleanedTempString2;
-            Debug.Log(CellState.OpponentSpawn);
+            Debug.Log(debugString);
             sr.Close();
         }
         using (StreamReader sr = new StreamReader(SaveFileDir + SaveFileSelected.Substring(8)))
@@ -601,6 +604,7 @@ public static class SaveAndLoad
         }
        // IsReadyDrawMap = true;
         IsReady = true;//REMOVE?
-        Debug.Log(IsReadyDrawMap + " == IsReadyDrawMap SaveAndLoad.cs");
+        debugString = string.Format("SaveAndLoad.IsReadyDrawMap == {0}", IsReadyDrawMap);
+        Debug.Log(debugString);
     }
 }

@@ -31,7 +31,7 @@ public class Score : MonoBehaviour
     }
     public void Start()
     {
-        Debug.Log(isLoad);
+       // Debug.Log(isLoad);
         Debug.Log("Score.cs - start - ScoreState.IsLoad " + ScoreState.IsLoad);
         Debug.Log("Score.cs - start - SaveAndLoad.IsReady " + SaveAndLoad.IsReady);
         if (ScoreState.IsLoad) //initialise load game variables
@@ -50,7 +50,7 @@ public class Score : MonoBehaviour
             numAATowers = ScoreState.NumAATowers;
             numMTowers = ScoreState.NumMTowers;
             numHouses = ScoreState.NumHouses;
-            numLibraries = ScoreState.NumLibraries;
+            numLibraries = ScoreState.NumLibraries;//ss
             numFactories = ScoreState.NumFactories;
             numCityCentres = ScoreState.NumCityCentres;
             numWonders = ScoreState.NumWonders;
@@ -79,7 +79,8 @@ public class Score : MonoBehaviour
         }
         else //initialise new game variables
         {
-            score = 10000; // dev testing purposes
+            //score = 10000; // dev testing purposes
+            score = 100;
             scoreGainRate = 10;
             scoreMultiplier = 1;
 

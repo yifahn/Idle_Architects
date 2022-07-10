@@ -923,7 +923,8 @@ public class Map : MonoBehaviour
         }
         int index = 0;
         //IF LOAD...
-        Debug.Log(ScoreState.IsLoad);
+        debugString = string.Format("ScoreState.IsLoad == {0}",ScoreState.IsLoad);
+        Debug.Log(debugString);
         if (ScoreState.IsLoad)//&& SaveAndLoad.IsReadyDrawMap
         {
             Debug.Log("Loading map");
@@ -978,7 +979,8 @@ public class Map : MonoBehaviour
                 }
             }
         }//ss
-        Debug.Log(ScoreState.Score);
+        debugString = string.Format("ScoreState.IsLoad == {0}", ScoreState.Score);
+        Debug.Log(debugString);
         SaveAndLoad.IsReadyDrawMap = false;//unnecessary?
         SaveAndLoad.IsReadyPlay = true; // FINISH LOAD MAP - CAN BEGIN EDITING BUILDING VARIABLES
 
